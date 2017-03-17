@@ -121,9 +121,7 @@ def main(settings):
     else:
         msg = 'Found new appointment in location %s on %s (current is on %s)!' % (settings.get("enrollment_location_id"), new_apt, current_apt)
         logging.info(msg + (' Sending email.' if not settings.get('no_email') else ' Not sending email.'))
-
-        if settings.get('notify_osx'):
-            notify_osx(msg)
+        notify_osx(msg)
         if not settings.get('no_email'):
             notify_send_email(settings, current_apt, new_apt, use_gmail=settings.get('use_gmail'))
         if settings.get('twilio_account_sid'):
